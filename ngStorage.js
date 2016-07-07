@@ -157,6 +157,13 @@
                             $storage.$sync();
                             return $storage;
                         },
+                        $setKeyPrefix : function (prefix) {
+                            if (typeof prefix !== 'string') {
+                                throw new TypeError('[ngStorage] - ' + storageType + 'Provider.setKeyPrefix() expects a String.');
+                            }
+                            storageKeyPrefix = "ng-"+prefix+"-";
+                            prefixLength = storageKeyPrefix.length;
+                        },
                         $reset: function(items) {
                             for (var k in $storage) {
                                 '$' === k[0] || (delete $storage[k] && webStorage.removeItem(storageKeyPrefix + k));
