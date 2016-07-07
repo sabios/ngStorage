@@ -158,14 +158,19 @@
                             return $storage;
                         },
                         $getKeyPrefix : function () {
-				return storageKeyPrefix ;
-			},
+                            return storageKeyPrefix ;
+                        },
                         $setKeyPrefix : function (prefix) {
                             if (typeof prefix !== 'string') {
                                 throw new TypeError('[ngStorage] - ' + storageType + 'Provider.setKeyPrefix() expects a String.');
                             }
                             storageKeyPrefix = "ng-"+prefix+"-";
                             prefixLength = storageKeyPrefix.length;
+
+                            for (var k in $storage) {
+                                '$' === k[0] || (delete $storage[k] );
+                            }
+
                         },
                         $reset: function(items) {
                             for (var k in $storage) {
