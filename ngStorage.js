@@ -157,6 +157,9 @@
                             $storage.$sync();
                             return $storage;
                         },
+                        $getKeyPrefix : function () {
+				return storageKeyPrefix ;
+			},
                         $setKeyPrefix : function (prefix) {
                             if (typeof prefix !== 'string') {
                                 throw new TypeError('[ngStorage] - ' + storageType + 'Provider.setKeyPrefix() expects a String.');
